@@ -26,9 +26,24 @@ if(isset($_POST['submit_edit'])) {
     $tugas = $_POST['tugas'];
     
     $model = new Model();
-
+    
     // kemudian variable diatas di parsing kedalam method update pada class model
-    $model->update($nim,$nama,$uts,$tugas,$uas);
+    $model->update($nim,$nama,$uts,$uas,$tugas);
+    
+    header('Location:index.php');
+}
+
+// cek apakah terdapat data/objek dari GET nim dari index link hapus
+if(isset($_GET['nim'])) {
+
+    // jika true, maka data get ditampung di varibel $id
+    $id = $_GET['nim'];
+
+    // inisialisasi objek 
+    $model = new Model();
+
+    // setelah ditampung, kemudian diproses melalui method delete() dari objek model pada class model 
+    $model->delete($id);
 
     header('Location:index.php');
 }

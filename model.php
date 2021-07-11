@@ -77,10 +77,16 @@ class Model extends Connection {
     {
         $na =$this->na($uts,$tugas,$uas);
         $status = $this->status($na);
-        $sql ="UPDATE tbl_nilai SET nama='$nama', uts='$uts', uas='$uas', tugas='$tugas', na='$na',status='$status', WHERE nim='$nim'";
+        $sql ="UPDATE tbl_nilai SET nama='$nama', uts='$uts', uas='$uas', tugas='$tugas', na='$na', status='$status' WHERE nim='$nim'";
 
         $this->conn->query($sql);
     }
 
-
+    // Method untuk menghapus  data yang dipilih sesuai nim 
+    public function delete($nim)
+    {
+        $sql = "DELETE FROM tbl_nilai WHERE nim='$nim'";
+        $this->conn->query($sql);
+    }
+    
 }
