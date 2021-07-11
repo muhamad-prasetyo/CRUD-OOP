@@ -51,11 +51,36 @@ class Model extends Connection {
         while($obj = $bind->fetch_object()) {
 
             $baris[] = $obj;
+        }
 
-            // cek apakah data tidak kosong, jika tidak kosong maka return 
-            if(!empty($baris)) {
-                return $baris;
-            }
+        // cek apakah data tidak kosong, jika tidak kosong maka return 
+        if(!empty($baris)) {
+            return $baris;
         }
     }
+
+    // Method untuk mengambil data id atau nim yang dipilih
+    public function edit($id)
+    {
+        $sql ="SELECT * FROM tbl_nilai WHERE nim='$id'";
+        $bind = $this->conn->query($sql);
+
+        while($obj = $bind->fetch_object()) {
+            $baris = $obj;
+        }
+
+        return $baris;
+    }
+
+    // Method untuk mengubah/Update data yg dipilih sesuai id=nim 
+    public function update($nim, $nama, $uts, $tugas, $uas)
+    {
+        $na =$this->na($uts,$tugas,$uas);
+        $status = $this->status($na);
+        $sql ="UPDATE tbl_nilai SET nama='$nama', uts='$uts', uas='$uas', tugas='$tugas', na='$na',status='$status', WHERE nim='$nim'";
+
+        $this->conn->query($sql);
+    }
+
+
 }
