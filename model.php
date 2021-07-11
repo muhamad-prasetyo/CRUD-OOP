@@ -10,7 +10,7 @@ class Model extends Connection {
         $this->conn = $this->get_connection();
     }
 
-    // method untuk memasukan data ke dalam mysql database
+    // method insert untuk menginput data ke dalam database melalui object $this->conn
     public function insert($nim, $nama, $uts, $uas, $tugas)
     {
         $na = $this->na($uts,$tugas,$uas);
@@ -20,13 +20,15 @@ class Model extends Connection {
         $this->conn->query($sql);
     }
 
+    // method na untuk menghitung nilai akhir berdasarkan rumus yg dibuat 
     public function na($uts,$tugas,$uas) 
     {
-        $na =(0.3*$uts)+(0.3*$tugas)+(0.4+$uas);
+        $na =(0.3*$uts)+(0.3*$tugas)+(0.4*$uas);
         
         return $na;
     }
 
+    // Method status untuk membuat string value berdasarkan nilai akhir
     public function status($na) 
     {
         $status="";
