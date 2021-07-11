@@ -41,4 +41,20 @@ class Model extends Connection {
 
         return $status;
     }
+
+    // method untuk menampikan data dari database ke table 
+    public function tampil_data()
+    {
+        $sql ="SELECT * FROM tbl_nilai";
+        $bind = $this->conn->query($sql);
+
+        while($obj = $bind->fetch_object()) {
+            $baris[] = $obj;
+
+            // cek apakah data tidak kosong, jika tidak kosong maka return 
+            if(!empty($baris)) {
+                return $baris;
+            }
+        }
+    }
 }
