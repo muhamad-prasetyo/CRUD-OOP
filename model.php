@@ -49,6 +49,7 @@ class Model extends Connection {
         $bind = $this->conn->query($sql);
 
         while($obj = $bind->fetch_object()) {
+
             $baris[] = $obj;
 
             // cek apakah data tidak kosong, jika tidak kosong maka return 
